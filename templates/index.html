@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weatherNew</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☀️ weatherNew</h1>
+        </header>
+
+        <main>
+            <div class="search-box">
+                <input type="text" id="city-input" placeholder="Ange stad..." />
+                <button id="search-btn">Sök</button>
+            </div>
+
+            <div id="weather-info" class="weather-info hidden">
+                <div class="location">
+                    <h2 id="city-name">-</h2>
+                    <p id="date">-</p>
+                </div>
+
+                <div class="current-weather">
+                    <div class="temperature">
+                        <span id="temp">-</span>°C
+                    </div>
+                    <div class="weather-icon">
+                        <img id="weather-icon" src="" alt="Väder ikon" />
+                    </div>
+                    <div class="description">
+                        <p id="weather-desc">-</p>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="detail-item">
+                        <span class="label">Känns som:</span>
+                        <span id="feels-like">-</span>°C
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Luftfuktighet:</span>
+                        <span id="humidity">-</span>%
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Vind:</span>
+                        <span id="wind">-</span> m/s
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Lufttryck:</span>
+                        <span id="pressure">-</span> hPa
+                    </div>
+                </div>
+            </div>
+
+            <div id="map-container" class="map-container hidden">
+                <h3>🗺️ Plats</h3>
+                <div id="map"></div>
+            </div>
+
+            <div id="forecast-container" class="forecast-container hidden">
+                <h3>📅 Prognos</h3>
+                <div id="forecast-days" class="forecast-days"></div>
+            </div>
+
+            <div id="error-msg" class="error hidden"></div>
+        </main>
+
+        <footer>
+            <p>Väderdata från OpenWeatherMap</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
