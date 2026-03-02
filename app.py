@@ -1,11 +1,13 @@
 import os
+from pathlib import Path
 
 import requests
 from flask import Flask, jsonify, render_template, request
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-load_dotenv()
+ENV_PATH = Path(__file__).resolve().parent / ".env"
+load_dotenv(dotenv_path=ENV_PATH)
 
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 FORECAST_URL = "https://api.openweathermap.org/data/2.5/forecast"
@@ -14,7 +16,7 @@ FORECAST_URL = "https://api.openweathermap.org/data/2.5/forecast"
 def get_api_key() -> str:
     api_key = os.getenv("OPENWEATHER_API_KEY", "")
     if not api_key:
-        raise ValueError("API key missing. Set OPENWEATHER_API_KEY in environment or .env file.")
+        raise ValueError("API key missing. Set OPENWEATHER_API_KEY in .env file.")
     return api_key
 
 
